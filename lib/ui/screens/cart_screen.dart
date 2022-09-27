@@ -29,7 +29,7 @@ class CartPage extends StatelessWidget {
                       topRight: Radius.circular(10.0),
                       bottomRight: Radius.circular(10.0)),
                   image: DecorationImage(
-                      image: NetworkImage(d.image), fit: BoxFit.fitHeight)),
+                      image: AssetImage(d.image), fit: BoxFit.fitHeight)),
             ),
             Expanded(
                 child: Padding(

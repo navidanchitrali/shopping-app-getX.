@@ -6,32 +6,22 @@ import 'package:shopping_app_getx/core/services/itemService.dart';
 import 'package:shopping_app_getx/ui/screens/cart_screen.dart';
 import 'package:shopping_app_getx/ui/screens/item_detail_screen.dart.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   ItemServices itemServices = ItemServices();
+
   List<ShoppingItem> items = [];
+
   final HomePageController controller = Get.put(HomePageController());
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
         appBar: AppBar(
-          title: Text("Home"),
+          title: const Text("Computer SL Limited"),
           elevation: 0.0,
           actions: <Widget>[
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: InkResponse(
                   onTap: () {
                     Navigator.push(context,
@@ -41,12 +31,12 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       GetBuilder<HomePageController>(
                           builder: (_) => Align(
-                                child: Text(controller.cartItems.length > 0
+                                child: Text(controller.cartItems.isNotEmpty
                                     ? controller.cartItems.length.toString()
                                     : ''),
                                 alignment: Alignment.topLeft,
                               )),
-                      Align(
+                      const Align(
                         child: Icon(Icons.shopping_cart),
                         alignment: Alignment.center,
                       ),
@@ -55,17 +45,15 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         ),
-        body: Container(
-          child: GetBuilder<HomePageController>(
-            init: controller,
-            builder: (_) => controller.isLoading
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : ShopItemListing(
-                    items: controller.items,
-                  ),
-          ),
+        body: GetBuilder<HomePageController>(
+          init: controller,
+          builder: (_) => controller.isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : ShopItemListing(
+                  items: controller.items,
+                ),
         ));
   }
 }
@@ -77,12 +65,11 @@ class ShopItemListing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GridView.builder(
         shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, childAspectRatio: 0.8),
         itemBuilder: (BuildContext context, int index) {
           return ItemView(
@@ -102,9 +89,8 @@ class ItemView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Padding(
-      padding: EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(5.0),
       child: InkResponse(
           onTap: () {
             Navigator.push(
@@ -115,8 +101,8 @@ class ItemView extends StatelessWidget {
           child: Material(
             child: Container(
                 height: 380.0,
-                padding: EdgeInsets.all(5.0),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(5.0),
+                decoration: const BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.rectangle,
                     boxShadow: [
@@ -125,29 +111,27 @@ class ItemView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Container(
+                    SizedBox(
                       height: 120.0,
                       child: Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Expanded(
-                              child: Container(
-                                child: Image.network(
-                                  item.image,
-                                  fit: BoxFit.contain,
-                                ),
+                              child: Image.asset(
+                                item.image,
+                                fit: BoxFit.cover,
                               ),
                             ),
                             Container(
                               child: item.fav
-                                  ? Icon(
+                                  ? const Icon(
                                       Icons.favorite,
                                       size: 20.0,
                                       color: Colors.red,
                                     )
-                                  : Icon(
+                                  : const Icon(
                                       Icons.favorite_border,
                                       size: 20.0,
                                     ),
@@ -156,14 +140,14 @@ class ItemView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10.0,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 10.0),
+                      padding: const EdgeInsets.only(left: 10.0),
                       child: Text(
-                        "${item.name}",
-                        style: TextStyle(
+                        item.name,
+                        style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 15.0,
                         ),
@@ -172,15 +156,16 @@ class ItemView extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 10.0),
+                      padding: const EdgeInsets.only(left: 10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.only(right: 10.0),
+                            padding: const EdgeInsets.only(right: 10.0),
                             child: Text(
                               "\$${item.price.toString()}",
-                              style: TextStyle(fontWeight: FontWeight.w500),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w500),
                             ),
                           )
                         ],

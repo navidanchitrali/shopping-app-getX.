@@ -79,7 +79,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                             });
                           },
                           children: <Widget>[
-                            Image.network(
+                            Image.asset(
                               model.image,
                               height: 150.0,
                             ),
@@ -149,12 +149,12 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                                     .showSnackBar(SnackBar(content: Text(msg)));
                               },
                               child: model.fav
-                                  ? Icon(
+                                  ? const Icon(
                                       Icons.favorite,
                                       size: 20.0,
                                       color: Colors.red,
                                     )
-                                  : Icon(
+                                  : const Icon(
                                       Icons.favorite_border,
                                       size: 20.0,
                                     ),
@@ -170,19 +170,20 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
               height: 1.0,
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     model.name,
-                    style:
-                        TextStyle(fontWeight: FontWeight.w500, fontSize: 19.0),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500, fontSize: 19.0),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                    child: Text(
-                        "Flutter: Bubble tab indicator for TabBar. Using a Stack Widget and then adding elements to stack on different levels(stacking components like Tabs, above"),
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: const Text(
+                        "We provide all type to laptops, desktop, and other peripherial devices of the computer system"),
                   )
                 ],
               ),
